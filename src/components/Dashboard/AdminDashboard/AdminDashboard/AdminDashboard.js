@@ -12,9 +12,9 @@ const AdminDashboard = () => {
           <div className="col-md-3 left px-5 py-3">
             <img src={logo} alt="logo" height="30px" />
             <div className="sidebar-links">
-              <p onClick={() => setOption("service")}>Order</p>
-              <p onClick={() => setOption("addService")}>Service List</p>
-              <p onClick={() => setOption("makeAdmin")}>Review</p>
+              <p onClick={() => setOption("service")}>Service List</p>
+              <p onClick={() => setOption("addService")}>Add Service</p>
+              <p onClick={() => setOption("makeAdmin")}>Make Admin</p>
             </div>
           </div>
   
