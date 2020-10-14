@@ -1,0 +1,52 @@
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: white;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+/* #cutomer-dashboard {
+    height: 100vh;
+}
+
+.right-side {
+    height: 100vh;
+    background-color: #F4F7FC;
+} */
+
+.left {
+    background-color: white;
+    height: 100vh;
+    /* padding: 2rem 1rem; */
+}
+.nav {
+    height: 10vh;
+}
+
+.nav li {
+    list-style: none;
+}
+.custom-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.sidebar-links {
+    margin-top: 2rem;
+}
+.sidebar-links p:hover {
+    cursor: pointer;
+}
+
+.right-side {
+    background-color: #F4F7FC;
+}
+
+.custom-nav {
+    background-color: white;
+}

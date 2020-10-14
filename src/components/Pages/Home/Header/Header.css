@@ -1,0 +1,23 @@
+.hero {
+   
+}
+
+#hero {
+    height: 550px;
+    background-color: #FBD062;
+    clip-path: polygon(0 0, 100% 0,  100% 75%, 0 100%);
+}
+
+.h-500 {
+    height: 30vh;
+}
+
+.btn-main {
+    background-color: #111430;
+    font-weight: 300;
+    color: white;
+}
+.btn-main:hover {
+    background-color: #1e224e9d;
+    color: white;
+}

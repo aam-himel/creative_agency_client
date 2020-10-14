@@ -1,0 +1,21 @@
+
+
+nav a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #474747;
+}
+
+
+.navbar-nav .nav-item:hover{
+    border-bottom: 1px solid rgba(173, 24, 24, 0.774);
+}
+
+.navbar-nav .nav-item:hover:nth-child(5){
+    border-bottom: none;
+}
+
+.nav-item .login button{
+    font-weight: 400 !important;
+    font-size: 14px !important;
+}
