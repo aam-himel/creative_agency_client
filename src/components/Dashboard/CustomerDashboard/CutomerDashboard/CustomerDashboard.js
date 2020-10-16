@@ -27,6 +27,11 @@ const fakeServiceList = [
 
 const CustomerDashboard = () => {
   const [option, setOption] = useState("order");
+  
+  const handleCustomerServicesubmit = (e) => {
+    e.preventDefault();
+    console.log('Dashboard form submited');
+  }
   return (
     <div className="" id="cutomer-dashboard">
       <div className="row ">
@@ -55,7 +60,7 @@ const CustomerDashboard = () => {
         {/* This immidiate invoke function - Interesting */}
           {(()=> {
           if (option === "order") {
-            return <CustomerOrder />;
+            return <CustomerOrder handleSubmit={() => handleCustomerServicesubmit}/>;
           } else if(option === "service"){
             return <CustomerServiceList data={fakeServiceList}/>
           }else if(option === "review"){

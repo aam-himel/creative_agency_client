@@ -19,13 +19,12 @@ const FooterForm = () => {
         </div>
         
         <div class="form-group">
-
             <textarea className="form-control font-weight-lighter" id="exampleFormControlTextarea1" rows="5"></textarea>
         </div>
 
         <div class="form-group row">
             <div class="col-sm-10">
-            <button type="submit" class="btn btn-main px-4" onClick={handleSubmit}>Sign in</button>
+            <button type="submit" class="btn btn-main px-4" onClick={handleSubmit}>Send</button>
             </div>
         </div>
         </form>

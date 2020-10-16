@@ -1,24 +1,53 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { UserContext } from "../../../../App";
 
 const CustomerReview = () => {
+
+  const { register, handleSubmit} = useForm();
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  const onSubmit = (formData) => {
+    console.log(loggedInUser);
+    const newFormData = {...formData};
+    newFormData['email'] = sessionStorage.getItem('email');
+    console.log(newFormData);
+    fetch('http://localhost:5000/addAFeedback', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newFormData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  };
+
   return (
-    <div className="" style={{ width: "580px", height: "540px" }}>
-      <form>
+    <div  style={{ width: "580px", height: "540px" }}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div class="form-group">
           <input
-            type="email"
+            type="text"
             className="form-control font-weight-lighter"
             id="exampleFormControlInput1"
             placeholder="Your email"
+            ref={register}
+            name="name"
           />
         </div>
 
         <div class="form-group">
           <input
-            type="email"
+            type="text"
             className="form-control font-weight-lighter"
             id="exampleFormControlInput1"
             placeholder="Your name / company's name"
+            ref={register}
+            name="company"          
           />
         </div>
 
@@ -28,6 +57,8 @@ const CustomerReview = () => {
             id="exampleFormControlTextarea1"
             rows="5"
             placeholder="Description"
+            ref={register}
+            name="description"
           ></textarea>
         </div>
 
