@@ -3,18 +3,18 @@
 }
 
 #hero {
-    height: 550px;
+    height: 600px;
     background-color: #FBD062;
     clip-path: polygon(0 0, 100% 0,  100% 75%, 0 100%);
 }
 
 .h-500 {
-    height: 30vh;
+    height: 40vh;
 }
 
 .btn-main {
     background-color: #111430;
-    font-weight: 300;
+    font-weight: 400;
     color: white;
 }
 .btn-main:hover {

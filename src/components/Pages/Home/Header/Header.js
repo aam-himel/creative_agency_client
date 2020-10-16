@@ -19,7 +19,7 @@ const Header = () => {
             <button className="btn btn-main px-4">Hire Us</button>
           </div>
           <div className="col-md-7">
-            <img src={heroSvg} alt="hero img right" width="80%" className="pl-auto"/>
+            <img src={heroSvg} alt="hero img right" width="90%" className="pl-auto"/>
           </div>
         </div>
       </div>

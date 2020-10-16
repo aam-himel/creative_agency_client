@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { Redirect, Route, useHistory } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Redirect, Route } from 'react-router-dom';
 import { UserContext } from '../../../App';
 
 
 const PrivateRoute = ({ children, ...rest }) => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser, ] = useContext(UserContext);
     console.log(loggedInUser);
     console.log(sessionStorage.getItem('token'));
     
@@ -24,8 +24,11 @@ const PrivateRoute = ({ children, ...rest }) => {
           (isLoggedIn() || loggedInUser.email) ? (
             children
           ) : (
+            
             <Redirect
-              to={{
+              to={
+                
+                {
                 pathname: "/login",
                 state: { from: location }
               }}

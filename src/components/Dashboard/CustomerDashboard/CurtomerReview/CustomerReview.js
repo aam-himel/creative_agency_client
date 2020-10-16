@@ -5,14 +5,14 @@ import { UserContext } from "../../../../App";
 const CustomerReview = () => {
 
   const { register, handleSubmit} = useForm();
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const [loggedInUser] = useContext(UserContext);
 
   const onSubmit = (formData) => {
     console.log(loggedInUser);
     const newFormData = {...formData};
     newFormData['email'] = sessionStorage.getItem('email');
     console.log(newFormData);
-    fetch('http://localhost:5000/addAFeedback', {
+    fetch('https://powerful-reef-83308.herokuapp.com/addAFeedback', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newFormData)

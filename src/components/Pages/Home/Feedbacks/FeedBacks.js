@@ -6,7 +6,7 @@ const FeedBacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/feedbacks')
+    fetch('https://powerful-reef-83308.herokuapp.com/feedbacks')
     .then(res => res.json())
     .then(data => setFeedbacks(data));
   }, [])

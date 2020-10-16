@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from "../../../../images/logos/logo.png";
-import userImg from "../../../../images/customer-2.png";
 import AdminServiceList from '../AdminServiceList/AdminServiceList';
 import AddService from '../AddService/AddService';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
+
+
+
 const AdminDashboard = () => {
     const [option, setOption] = useState("service");
+    const [orders, setOrders] = useState([]);
+    const user = sessionStorage.getItem('displayName');
+    useEffect(() => {
+      fetch('https://powerful-reef-83308.herokuapp.com/orders')
+      .then(res => res.json())
+      .then(data => setOrders(data));
+    }, [])
+    
+    
     return (
       <div className="" id="cutomer-dashboard">
         <div className="row ">
@@ -25,7 +36,7 @@ const AdminDashboard = () => {
                     <h5> {option.toUpperCase()} </h5>
                 </li>
                 <li className="pr-4">
-                  <p>Himel</p>
+                  <p> {user} </p>
                 </li>
               </ul>
             </nav>
@@ -34,7 +45,7 @@ const AdminDashboard = () => {
           {/* This immidiate invoke function - Interesting */}
             {(()=> {
             if (option === "service") {
-              return <AdminServiceList />;
+              return <AdminServiceList orders={orders}/>;
             } else if(option === "addService"){
               return <AddService/>;
             }else if(option === "makeAdmin"){

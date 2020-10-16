@@ -1,12 +1,12 @@
 import React from "react";
 import CustomerServiceCard from "../CustomerServiceCard/CustomerServiceCard";
 
-const CustomerServiceList = (props) => {
+const CustomerServiceList = ({userOrders}) => {
   return (
     <div className="row row-cols-1 row-cols-md-3 mt-4">
     
       {
-          props.data.map(data => <CustomerServiceCard data = {data} />)
+          userOrders.map(userOrder => <CustomerServiceCard userOrder = {userOrder} />)
       }
       
     </div>

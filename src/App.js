@@ -4,13 +4,11 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link
 } from 'react-router-dom';
 import Home from './components/Pages/Home/Home/Home';
 import Login from './components/Auth/Login/Login';
-import CustomerDashboard from './components/Dashboard/CustomerDashboard/CutomerDashboard/CustomerDashboard';
-import AdminDashboard from './components/Dashboard/AdminDashboard/AdminDashboard/AdminDashboard';
 import PrivateRoute from './components/Shared/PrivateRoute/PrivateRoute';
+import Dashboard from './components/Dashboard/Dashboard/Dashboard';
 
 export const UserContext = createContext();
 
@@ -18,11 +16,10 @@ export const UserContext = createContext();
 const App = () => {
   
   const [loggedInUser, setLoggedInUser] = useState({});
-  const [isAdmin, setIsAdmin] = useState(false);
-  
+
   return (
     <div className="App">
-      <UserContext.Provider value={[loggedInUser,setLoggedInUser,isAdmin,setIsAdmin]}>
+      <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -33,12 +30,13 @@ const App = () => {
             <Login/>
           </Route>
 
-          <PrivateRoute path="/dashboard/user">
-            <CustomerDashboard/>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
           </PrivateRoute>
 
-          <PrivateRoute path="/dashboard/admin">
-            <AdminDashboard/>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+            
           </PrivateRoute>
 
         </Switch>

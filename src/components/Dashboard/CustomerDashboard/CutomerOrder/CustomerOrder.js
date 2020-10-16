@@ -14,15 +14,17 @@ const CustomerOrder = () => {
   
   const onSubmit = (formData) => {
     const newFormData = new FormData();
-
+    const status = 'pending';
     newFormData.append('imgFile', imgFile);
     newFormData.append('name', formData.username);
     newFormData.append('email', formData.email);
     newFormData.append('serviceName',formData.serviceName );
     newFormData.append('description', formData.description);
     newFormData.append('price', formData.price);
+    newFormData.append('status', status);
     console.log(newFormData);
-    fetch('http://localhost:5000/placeAOrder', {
+    
+    fetch('https://powerful-reef-83308.herokuapp.com/placeAOrder', {
       method: 'POST',
       body: newFormData
     })

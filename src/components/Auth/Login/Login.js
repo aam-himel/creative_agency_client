@@ -15,30 +15,16 @@ if (firebase.apps.length === 0) {
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const [isAdmin, setIsAdmin] = useContext(UserContext);
+
+
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: "/" } };
+    const { from } = location.state || { from: { pathname: "/dashboard" } };
     
-    useEffect(() => {
-      fetch('http://localhost:5000/isAdmin', {
-              method: 'POST',
-              headers: { 'content-type': 'application/json' },
-              body: JSON.stringify({email: loggedInUser.email})
-            })
-            .then(res => res.json())
-            .then(data => {
-              if(data) {
-                setIsAdmin(true);
-              }
-            });
-            
-    }, [loggedInUser])
 
     const handleGoogleSignIn = (e) =>{
-        
+        e.preventDefault();
         const provider = new firebase.auth.GoogleAuthProvider();
-        console.log("Logged in user isAdmin",isAdmin);
         firebase
           .auth()
           .signInWithPopup(provider)
@@ -49,10 +35,24 @@ const Login = () => {
                 email: email,
                 photo: photoURL,
             }
-        
+            console.log(signedInUser.email);
+            fetch('https://powerful-reef-83308.herokuapp.com/isAdmin', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({email: signedInUser.email })
+            })
+            .then(res => res.json())
+            .then(data => {
+              if(data) {
+                console.log(data);
+                sessionStorage.setItem('isAdmin', true);
+                
+              }
+            });
 
             setLoggedInUser(signedInUser);
             sessionStorage.setItem('email', signedInUser.email);
+            sessionStorage.setItem('displayName', signedInUser.name);
             getCurrentUser();
           })
           .catch((err) => {

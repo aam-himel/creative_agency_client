@@ -1,32 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../../../images/logos/logo.png";
-import userImg from "../../../../images/customer-2.png";
 import "./CustomerDashboard.css";
 import CustomerOrder from "../CutomerOrder/CustomerOrder";
 import CustomerReview from "../CurtomerReview/CustomerReview";
 import CustomerServiceList from "../CustomerServiceList/CustomerServiceList";
 
-const fakeServiceList = [
-    {
-        img: userImg,
-        title: 'Web & Mobile design',
-        body: 'We craft stunning and amazing web UI, using a well drrafted UX to fit your product.'
-    },
-    {
-        img: userImg,
-        title: 'Graphic design',
-        body: 'Amazing flyers, social media posts and brand representations that would make your brand stand out.'
-    },
-    {
-        img: userImg,
-        title: 'Web & Mobile design',
-        body: 'We craft stunning and amazing web UI, using a well drrafted UX to fit your product.'
-    }
 
-]
 
 const CustomerDashboard = () => {
   const [option, setOption] = useState("order");
+  const [userOrders, setUserOrders] = useState([]);
+  const currentUser = sessionStorage.getItem('email');
+  const user = sessionStorage.getItem('displayName');
+  console.log(currentUser);
+  useEffect(() => {
+    fetch('https://powerful-reef-83308.herokuapp.com/userOrders', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({email: currentUser})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      setUserOrders(data);
+
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }, [])
+
   
   const handleCustomerServicesubmit = (e) => {
     e.preventDefault();
@@ -51,7 +54,7 @@ const CustomerDashboard = () => {
                   <h5> {option.toUpperCase()} </h5>
               </li>
               <li className="pr-4">
-                <p>Himel</p>
+              <p> {user} </p>
               </li>
             </ul>
           </nav>
@@ -62,7 +65,7 @@ const CustomerDashboard = () => {
           if (option === "order") {
             return <CustomerOrder handleSubmit={() => handleCustomerServicesubmit}/>;
           } else if(option === "service"){
-            return <CustomerServiceList data={fakeServiceList}/>
+            return <CustomerServiceList userOrders={userOrders}/>
           }else if(option === "review"){
               return <CustomerReview />
           }

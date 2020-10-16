@@ -1,6 +1,7 @@
 import React from 'react';
 
-const AdminServiceList = () => {
+const AdminServiceList = (props) => {
+    const orders = props.orders
     return (
         <div style={{width:'95%', margin:'0 auto', backgroundColor:'white', borderRadius:'10px'}}>
             <table class="table">
@@ -15,29 +16,16 @@ const AdminServiceList = () => {
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Sufi Ahmed Hamim</td>
-                    <td>sufi@gmail.com</td>
-                    <td>@Graphic Design</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                    <td>Pending</td>
-                </tr>
-                <tr>
-                    <td>Sufi Ahmed Hamim</td>
-                    <td>sufi@gmail.com</td>
-                    <td>@Graphic Design</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                    <td>Pending</td>
-                </tr>
-                <tr>
-                    <td>Sufi Ahmed Hamim</td>
-                    <td>sufi@gmail.com</td>
-                    <td>@Graphic Design</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                    <td>Pending</td>
-                </tr>
-               
-            
+                {
+                    orders.map(order => <tr>
+                        <td> {order.name} </td>
+                        <td> {order.email} </td>
+                        <td> {order.serviceName} </td>
+                        <td> {order.description}</td>
+                        <td>{order.status}</td>
+                     </tr>
+                   
+                    )}    
             </tbody>
             </table>
         </div>
